@@ -8,6 +8,8 @@ if file_exists("nodes.save")
 	
 	var _load_data = json_parse(_string);
 	
+	lines = array_shift(_load_data);
+	
 	var _len = array_length(_load_data);
 	for (var i = 0; i < _len; i++;)
 	{
@@ -17,4 +19,8 @@ if file_exists("nodes.save")
 		_inst.connections = _node.connections;
 		_inst.lines = _node.lines;
 	}
+}
+else
+{
+	lines = [];	
 }

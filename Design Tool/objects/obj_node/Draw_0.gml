@@ -82,13 +82,22 @@ for (var i = 0; i < _len; i++;)
 			draw_sprite_ext(spr_button, -1, _button.x, _button.y, _button.w, _button.h, 0, _c, 1);
 			
 			if !_button_selected
-			and !_button.active
 			and _hover
-			and keyboard_check_pressed(vk_lshift)
 			{
-				_button.active = true;
+				if obj_control.can_change == 0
+				and keyboard_check_pressed(vk_space)
+				{
+					obj_control.node_viewing = _node;
+					obj_control.can_change = 1;
+				}
+				
+				if !_button.active
+				and keyboard_check_pressed(vk_lshift)
+				{
+					_button.active = true;
+				}
 			}
-			
+
 			if _button.active
 			{
 				_button.x = mouse_x;
@@ -103,11 +112,6 @@ for (var i = 0; i < _len; i++;)
 					_button.w += (mouse_wheel_up() - mouse_wheel_down()) * 0.25;
 				}
 				
-				if keyboard_check_pressed(vk_space) and obj_control.can_change == 0
-				{
-					obj_control.node_viewing = _node;
-					obj_control.can_change = 1;
-				}
 				
 				if keyboard_check_released(vk_lshift)
 				{

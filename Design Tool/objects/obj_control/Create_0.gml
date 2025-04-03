@@ -13,7 +13,6 @@ can_change = 0;
 
 surf = surface_create(room_width, room_height);
 
-lines = [];
 can_draw = 0;
 colours = [c_black, c_red, c_lime, c_blue, c_white];
 colour_draw = c_grey;

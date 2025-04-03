@@ -1,6 +1,6 @@
 /// @desc Save
 
-var _save_data = [];
+var _save_data = [lines];
 
 with obj_node
 {
