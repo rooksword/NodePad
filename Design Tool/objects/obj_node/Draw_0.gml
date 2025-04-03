@@ -56,6 +56,8 @@ if obj_control.node_viewing == id
 		#endregion
 	}
 	
+	#region Draw lines
+	
 	var _len = array_length(lines);
 	for (var i = 0; i < _len; i++;)
 	{
@@ -73,6 +75,8 @@ if obj_control.node_viewing == id
 			}
 		}
 	}
+	
+	#endregion
 
 	surface_reset_target();
 
@@ -119,11 +123,11 @@ for (var i = 0; i < _len; i++;)
 		
 			draw_sprite_ext(spr_button, -1, _button.x, _button.y, _button.w, _button.h, 0, _node.colour, 1);
 			
-			var _x = sprite_get_width(spr_button) * _button.w;
-			var _y = sprite_get_height(spr_button) * _button.h;
+			var _x = sprite_get_width(spr_button) * _button.w / 2;
+			var _y = sprite_get_height(spr_button) * _button.h / 2;
 			
 			if !_button_selected
-			and point_in_rectangle(mouse_x, mouse_y, _button.x - _x, _button.y - _y, _button.x + _x, _button.y + _button.y)
+			and point_in_rectangle(mouse_x, mouse_y, _button.x - _x, _button.y - _y, _button.x + _x, _button.y + _y)
 			{
 				if keyboard_check(vk_lshift)
 				{
