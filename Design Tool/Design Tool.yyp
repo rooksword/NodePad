@@ -39,6 +39,7 @@
     {"id":{"name":"obj_node","path":"objects/obj_node/obj_node.yy",},},
     {"id":{"name":"rm_tool","path":"rooms/rm_tool/rm_tool.yy",},},
     {"id":{"name":"InArray","path":"scripts/InArray/InArray.yy",},},
+    {"id":{"name":"Lines","path":"scripts/Lines/Lines.yy",},},
     {"id":{"name":"NodeGet","path":"scripts/NodeGet/NodeGet.yy",},},
     {"id":{"name":"spr_arrow","path":"sprites/spr_arrow/spr_arrow.yy",},},
     {"id":{"name":"spr_button","path":"sprites/spr_button/spr_button.yy",},},

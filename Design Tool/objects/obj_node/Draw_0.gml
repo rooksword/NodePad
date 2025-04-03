@@ -1,10 +1,10 @@
 /// @desc Draw nodes and surface
 
-if keyboard_check_pressed(ord("1")) colour_draw = colours[0];
-if keyboard_check_pressed(ord("2")) colour_draw = colours[1];
-if keyboard_check_pressed(ord("3")) colour_draw = colours[2];
-if keyboard_check_pressed(ord("4")) colour_draw = colours[3];
-if keyboard_check_pressed(ord("5")) colour_draw = colours[4];
+if keyboard_check_pressed(ord("1")) colour_draw = obj_control.colours[0];
+if keyboard_check_pressed(ord("2")) colour_draw = obj_control.colours[1];
+if keyboard_check_pressed(ord("3")) colour_draw = obj_control.colours[2];
+if keyboard_check_pressed(ord("4")) colour_draw = obj_control.colours[3];
+if keyboard_check_pressed(ord("5")) colour_draw = obj_control.colours[4];
 
 #region Draw surface
 
@@ -17,82 +17,17 @@ if obj_control.node_viewing == id
 	draw_clear_alpha(c_white, 0);
 
 	if !position_meeting(mouse_x, mouse_y, obj_node)
+	and !keyboard_check(vk_escape)
 	{
-		#region Create lines
-		
-		if mouse_check_button_pressed(mb_left)
-		{
-			array_push(lines, { array : [], colour : colour_draw });
-			can_draw = true;
-		}
-
-		if can_draw and mouse_check_button(mb_left)
-		{
-			var _len = array_length(lines) - 1;
-			array_push(lines[_len].array, { x : mouse_x, y : mouse_y });	
-		}
-		
-		if mouse_check_button_released(mb_left)
-		{
-			can_draw = false;	
-		}
-		
-		#endregion
+		LinesCreate(lines);
 	}
 	
-	#region Delete lines
-		
 	if mouse_check_button(mb_right)
 	{
-		var _len = array_length(lines);
-		for (var i = 0; i < _len; i++;)
-		{
-			var _line = lines[i].array;
-			var _line_len = array_length(_line);
-			for (var j = 0; j < _line_len; j++;)
-			{
-				var _p = _line[j];
-				if point_distance(mouse_x, mouse_y, _p.x, _p.y) < 10
-				{
-					array_delete(lines, i, 1);
-					_len--;
-				}
-			}
-		}
-	}
-		
-	#endregion
-	
-	#region Draw lines
-	
-	var _len = array_length(lines);
-	for (var i = 0; i < _len; i++;)
-	{
-		draw_set_colour(lines[i].colour);
-		
-		var _line = lines[i].array;
-		var _len_line = array_length(_line);
-		if _len_line > 1
-		{
-			for (var j = 0; j < _len_line - 1; j++;)
-			{
-				var _px = _line[j].x;
-				var _py = _line[j].y;
-				var _qx = _line[j + 1].x;
-				var _qy = _line[j + 1].y;
-				
-				_px -= obj_camera.x - room_width / 2;
-				_py -= obj_camera.y - room_height / 2;
-				_qx -= obj_camera.x - room_width / 2;
-				_qy -= obj_camera.y - room_height / 2;
-				
-				draw_line_width(_px, _py, _qx, _qy, 4);
-				draw_circle(_qx, _qy, 2, false);
-			}
-		}
+		LinesDelete(lines);
 	}
 	
-	#endregion
+	LinesDraw(lines);
 
 	surface_reset_target();
 
