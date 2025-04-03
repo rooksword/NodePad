@@ -76,11 +76,18 @@ if obj_control.node_viewing == id
 		{
 			for (var j = 0; j < _len_line - 1; j++;)
 			{
-				var _p = _line[j];
-				var _q = _line[j + 1];
+				var _px = _line[j].x;
+				var _py = _line[j].y;
+				var _qx = _line[j + 1].x;
+				var _qy = _line[j + 1].y;
 				
-				draw_line_width(_p.x, _p.y, _q.x, _q.y, 4);
-				draw_circle(_q.x, _q.y, 2, false);
+				_px -= obj_camera.x - room_width / 2;
+				_py -= obj_camera.y - room_height / 2;
+				_qx -= obj_camera.x - room_width / 2;
+				_qy -= obj_camera.y - room_height / 2;
+				
+				draw_line_width(_px, _py, _qx, _qy, 4);
+				draw_circle(_qx, _qy, 2, false);
 			}
 		}
 	}
@@ -89,7 +96,7 @@ if obj_control.node_viewing == id
 
 	surface_reset_target();
 
-	draw_surface(surf, 0, 0);
+	draw_surface(surf, obj_camera.x - room_width / 2, obj_camera.y - room_height / 2);
 }
 
 #endregion
