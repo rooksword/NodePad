@@ -1,6 +1,8 @@
-/// @desc Draw info
+/// @desc Draw permanent sketches
 
-#region Draw surface
+if keyboard_check(vk_escape)
+{
+	#region Draw surface
 
 surface_set_target(surf);
 
@@ -24,7 +26,4 @@ surface_reset_target();
 draw_surface(surf, obj_camera.x - room_width / 2, obj_camera.y - room_height / 2);
 
 #endregion
-
-draw_set_colour(c_black);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+}

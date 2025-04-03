@@ -37,7 +37,8 @@ and mouse_check_button_released(mb_left)
 						x: room_width - 64,
 						y: room_height / 2,
 						w: 2,
-						h: 1
+						h: 1,
+						active: false
 					}
 				});
 			}

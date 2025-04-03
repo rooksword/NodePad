@@ -68,23 +68,31 @@ for (var i = 0; i < _len; i++;)
 	
 		#region Draw buttons
 		
+		var _button = connections[i].button;
+		
 		if obj_control.node_viewing == id
 		{
-			var _button = connections[i].button;
-		
-			draw_sprite_ext(spr_button, -1, _button.x, _button.y, _button.w, _button.h, 0, _node.colour, 1);
-			
 			var _x = sprite_get_width(spr_button) * _button.w / 2;
 			var _y = sprite_get_height(spr_button) * _button.h / 2;
 			
+			var _hover = point_in_rectangle(mouse_x, mouse_y, _button.x - _x, _button.y - _y, _button.x + _x, _button.y + _y);
+			
+			var _c = merge_colour(_node.colour, c_black, _hover ? 0.33 : 0);
+		
+			draw_sprite_ext(spr_button, -1, _button.x, _button.y, _button.w, _button.h, 0, _c, 1);
+			
 			if !_button_selected
-			and point_in_rectangle(mouse_x, mouse_y, _button.x - _x, _button.y - _y, _button.x + _x, _button.y + _y)
+			and !_button.active
+			and _hover
+			and keyboard_check_pressed(vk_lshift)
 			{
-				if keyboard_check(vk_lshift)
-				{
-					_button.x = mouse_x;
-					_button.y = mouse_y;
-				}
+				_button.active = true;
+			}
+			
+			if _button.active
+			{
+				_button.x = mouse_x;
+				_button.y = mouse_y;
 				
 				if keyboard_check(vk_lcontrol)
 				{
@@ -101,8 +109,17 @@ for (var i = 0; i < _len; i++;)
 					obj_control.can_change = 1;
 				}
 				
+				if keyboard_check_released(vk_lshift)
+				{
+					_button.active = false;	
+				}
+				
 				_button_selected = true;
 			}
+		}
+		else
+		{
+			_button.active = false;
 		}
 		
 		#endregion
