@@ -34,6 +34,7 @@
   },
   "name":"Design Tool",
   "resources":[
+    {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
     {"id":{"name":"obj_control","path":"objects/obj_control/obj_control.yy",},},
     {"id":{"name":"obj_node","path":"objects/obj_node/obj_node.yy",},},
     {"id":{"name":"rm_tool","path":"rooms/rm_tool/rm_tool.yy",},},

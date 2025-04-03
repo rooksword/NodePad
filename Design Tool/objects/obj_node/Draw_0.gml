@@ -1,5 +1,11 @@
 /// @desc Draw nodes and surface
 
+if keyboard_check_pressed(ord("1")) colour_draw = colours[0];
+if keyboard_check_pressed(ord("2")) colour_draw = colours[1];
+if keyboard_check_pressed(ord("3")) colour_draw = colours[2];
+if keyboard_check_pressed(ord("4")) colour_draw = colours[3];
+if keyboard_check_pressed(ord("5")) colour_draw = colours[4];
+
 #region Draw surface
 
 draw_set_colour(c_black);
@@ -10,58 +16,61 @@ if obj_control.node_viewing == id
 
 	draw_clear_alpha(c_white, 0);
 
-	var _x = room_width - obj_control.width;
-
-	if mouse_x > _x
+	if !position_meeting(mouse_x, mouse_y, obj_node)
 	{
 		#region Create lines
 		
 		if mouse_check_button_pressed(mb_left)
 		{
-			array_push(lines, []);	
+			array_push(lines, { array : [], colour : colour_draw });
+			can_draw = true;
 		}
 
-		if can_draw > 0 can_draw--;
-		else if mouse_check_button(mb_left)
+		if can_draw and mouse_check_button(mb_left)
 		{
 			var _len = array_length(lines) - 1;
-			array_push(lines[_len], { x : mouse_x - _x, y : mouse_y });	
-		
-			can_draw = draw_rate;
+			array_push(lines[_len].array, { x : mouse_x, y : mouse_y });	
 		}
 		
-		#endregion
-		
-		#region Delete lines
-		
-		if mouse_check_button(mb_right)
+		if mouse_check_button_released(mb_left)
 		{
-			var _len = array_length(lines);
-			for (var i = 0; i < _len; i++;)
-			{
-				var _line = lines[i];
-				var _line_len = array_length(_line);
-				for (var j = 0; j < _line_len; j++;)
-				{
-					var _p = _line[j];
-					if point_distance(mouse_x - _x, mouse_y, _p.x, _p.y) < 10
-					{
-						array_delete(lines, i, 1);
-						_len--;
-					}
-				}
-			}
+			can_draw = false;	
 		}
 		
 		#endregion
 	}
+	
+	#region Delete lines
+		
+	if mouse_check_button(mb_right)
+	{
+		var _len = array_length(lines);
+		for (var i = 0; i < _len; i++;)
+		{
+			var _line = lines[i].array;
+			var _line_len = array_length(_line);
+			for (var j = 0; j < _line_len; j++;)
+			{
+				var _p = _line[j];
+				if point_distance(mouse_x, mouse_y, _p.x, _p.y) < 10
+				{
+					array_delete(lines, i, 1);
+					_len--;
+				}
+			}
+		}
+	}
+		
+	#endregion
 	
 	#region Draw lines
 	
 	var _len = array_length(lines);
 	for (var i = 0; i < _len; i++;)
 	{
-		var _line = lines[i];
+		draw_set_colour(lines[i].colour);
+		
+		var _line = lines[i].array;
 		var _len_line = array_length(_line);
 		if _len_line > 1
 		{
@@ -80,12 +89,12 @@ if obj_control.node_viewing == id
 
 	surface_reset_target();
 
-	draw_surface(surf, _x, 0);
+	draw_surface(surf, 0, 0);
 }
 
 #endregion
 
-#region Draw lines, arrows, buttons, and self
+#region Draw lines, arrows, buttons
 
 draw_set_colour(colour);
 
@@ -163,7 +172,11 @@ if obj_control.node_connecting == id
 	draw_line_width(x, y, mouse_x, mouse_y, _w);
 }
 
+#endregion
+
 var _hover = position_meeting(mouse_x, mouse_y, id) or obj_control.node_connecting == id;
+
+image_alpha = obj_control.node_viewing == id ? 1 : 0.5;
 
 image_blend = merge_colour(colour, c_black, _hover ? 0.33 : 0);
 
@@ -175,8 +188,6 @@ draw_set_colour(c_white);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-draw_text(x, y, uid);
-
-#endregion
+//draw_text(x, y, uid);
 
 #endregion

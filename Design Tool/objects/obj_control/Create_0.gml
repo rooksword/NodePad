@@ -8,6 +8,4 @@ move_offset = { x : 0, y : 0 };
 
 node_viewing = noone;
 
-width = 405;
-
 can_change = 0;
