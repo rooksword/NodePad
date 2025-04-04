@@ -67,5 +67,9 @@ function LinesDraw(_lines)
 	}
 	
 	draw_set_colour(colour_draw);
-	draw_circle(mouse_x, mouse_y, obj_control.size_draw / 2, false);
+	var _mx = mouse_x;
+	var _my = mouse_y;
+	_mx -= obj_camera.x - room_width / 2;
+	_my -= obj_camera.y - room_height / 2;
+	draw_circle(_mx, _my, obj_control.size_draw / 2, false);
 }
