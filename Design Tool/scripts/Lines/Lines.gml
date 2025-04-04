@@ -9,7 +9,7 @@ function LinesCreate(_lines)
 	if can_draw and mouse_check_button(mb_left)
 	{
 		var _len = array_length(_lines) - 1;
-		array_push(_lines[_len].array, { x : mouse_x, y : mouse_y });	
+		array_push(_lines[_len].array, { x : mouse_x, y : mouse_y, size: obj_control.size_draw });	
 	}
 		
 	if mouse_check_button_released(mb_left)
@@ -60,9 +60,12 @@ function LinesDraw(_lines)
 				_qx -= obj_camera.x - room_width / 2;
 				_qy -= obj_camera.y - room_height / 2;
 				
-				draw_line_width(_px, _py, _qx, _qy, 4);
-				draw_circle(_qx, _qy, 2, false);
+				draw_line_width(_px, _py, _qx, _qy, _line[j].size);
+				draw_circle(_qx, _qy, _line[j].size / 2, false);
 			}
 		}
 	}
+	
+	draw_set_colour(colour_draw);
+	draw_circle(mouse_x, mouse_y, obj_control.size_draw / 2, false);
 }

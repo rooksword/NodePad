@@ -1,5 +1,7 @@
 /// @desc Edit nodes
 
+size_draw += mouse_wheel_up() - mouse_wheel_down();
+
 if can_change > 0 can_change--;
 
 #region Connecting
