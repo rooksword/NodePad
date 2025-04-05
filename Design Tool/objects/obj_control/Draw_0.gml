@@ -1,16 +1,18 @@
 /// @desc Draw permanent sketches
 
-if drawing
+if view_notes
 {
-	if !position_meeting(mouse_x, mouse_y, obj_node)
+	if colour_draw == 5
+	and !position_meeting(mouse_x, mouse_y, obj_node)
 	{
 		LinesCreate(lines);
 	}
 	
-	if mouse_check_button(mb_right)
+	if colour_draw == 6
+	and mouse_check_button(mb_left)
 	{
 		LinesDelete(lines);
-	}	
+	}
 }
 
 if view_notes

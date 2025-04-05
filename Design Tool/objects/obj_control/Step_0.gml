@@ -1,6 +1,16 @@
 /// @desc Edit nodes
 
-size_draw += mouse_wheel_up() - mouse_wheel_down();
+if keyboard_check(vk_lshift)
+{
+	colour_draw += mouse_wheel_up() - mouse_wheel_down();
+	if colour_draw < 0 colour_draw = array_length(colours) - 1;
+	if colour_draw > array_length(colours) - 1 colour_draw = 0;
+}
+else
+{
+	size_draw += mouse_wheel_up() - mouse_wheel_down();
+	size_draw = max(size_draw, 2);
+}
 
 if can_change > 0 can_change--;
 

@@ -2,7 +2,7 @@ function LinesCreate(_lines)
 {
 	if mouse_check_button_pressed(mb_left)
 	{
-		array_push(_lines, { array : [], colour : colour_draw });
+		array_push(_lines, { array : [], colour : obj_control.colours[obj_control.colour_draw] });
 		can_draw = true;
 	}
 
@@ -66,7 +66,7 @@ function LinesDraw(_lines)
 		}
 	}
 	
-	draw_set_colour(colour_draw);
+	draw_set_colour(obj_control.colours[obj_control.colour_draw]);
 	var _mx = mouse_x;
 	var _my = mouse_y;
 	_mx -= obj_camera.x - room_width / 2;

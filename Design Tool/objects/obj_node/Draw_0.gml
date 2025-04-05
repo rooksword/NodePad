@@ -1,11 +1,5 @@
 /// @desc Draw nodes and surface
 
-if keyboard_check_pressed(ord("1")) colour_draw = obj_control.colours[0];
-if keyboard_check_pressed(ord("2")) colour_draw = obj_control.colours[1];
-if keyboard_check_pressed(ord("3")) colour_draw = obj_control.colours[2];
-if keyboard_check_pressed(ord("4")) colour_draw = obj_control.colours[3];
-if keyboard_check_pressed(ord("5")) colour_draw = obj_control.colours[4];
-
 #region Draw surface
 
 draw_set_colour(c_black);
@@ -16,13 +10,14 @@ if obj_control.node_viewing == id
 
 	draw_clear_alpha(c_white, 0);
 
-	if !position_meeting(mouse_x, mouse_y, obj_node)
-	and !obj_control.drawing
+	if obj_control.colour_draw < 5
+	and !position_meeting(mouse_x, mouse_y, obj_node)
 	{
 		LinesCreate(lines);
 	}
 	
-	if mouse_check_button(mb_right)
+	if obj_control.colour_draw == 6
+	and mouse_check_button(mb_left)
 	{
 		LinesDelete(lines);
 	}
