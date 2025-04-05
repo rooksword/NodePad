@@ -1,8 +1,13 @@
 /// @desc Load
 
-if file_exists("nodes.save")
+lines = [];
+instance_destroy(obj_node);
+
+var _file = get_open_filename("save file|*.save", "");
+
+if file_exists(_file)
 {
-	var _buffer = buffer_load("nodes.save");
+	var _buffer = buffer_load(_file);
 	var _string = buffer_read(_buffer, buffer_string);
 	buffer_delete(_buffer);
 	
@@ -19,8 +24,6 @@ if file_exists("nodes.save")
 		_inst.connections = _node.connections;
 		_inst.lines = _node.lines;
 	}
-}
-else
-{
-	lines = [];	
+	
+	save = _file;
 }

@@ -20,3 +20,6 @@ size_draw = 2;
 
 drawing = false;
 view_notes = true;
+
+lines = [];
+save = "";
