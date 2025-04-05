@@ -53,10 +53,18 @@ and mouse_check_button_released(mb_left)
 						active: false
 					}
 				});
+				
+				if keyboard_check(vk_lalt)
+				{
+					array_push(_inst.connected, node_connecting.uid);
+				}
 			}
 			else // Destroy connection
 			{
 				array_delete(node_connecting.connections, _in_array, 1);
+				
+				var _in_c = InConnected(node_connecting.uid, _inst.connected);
+				if _in_array == -1 array_delete(_inst.connected, _in_c, 1);
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 /// @desc Variables
 
 connections = [];
+connected = [];
 
 uid = irandom(9999);
 

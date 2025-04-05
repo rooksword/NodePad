@@ -6,10 +6,6 @@ draw_set_colour(c_black);
 
 if obj_control.node_viewing == id
 {
-	surface_set_target(surf);
-
-	draw_clear_alpha(c_white, 0);
-
 	if obj_control.colour_draw < 5
 	and !position_meeting(mouse_x, mouse_y, obj_node)
 	{
@@ -22,11 +18,12 @@ if obj_control.node_viewing == id
 		LinesDelete(lines);
 	}
 	
-	LinesDraw(lines);
-
-	surface_reset_target();
-
-	draw_surface(surf, obj_camera.x - room_width / 2, obj_camera.y - room_height / 2);
+	if array_length(connected) > 0
+	{
+		with NodeGet(connected[0]) Draw();	
+	}
+	
+	Draw();
 }
 
 #endregion

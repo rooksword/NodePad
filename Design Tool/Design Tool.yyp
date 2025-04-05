@@ -38,6 +38,7 @@
     {"id":{"name":"obj_control","path":"objects/obj_control/obj_control.yy",},},
     {"id":{"name":"obj_node","path":"objects/obj_node/obj_node.yy",},},
     {"id":{"name":"rm_tool","path":"rooms/rm_tool/rm_tool.yy",},},
+    {"id":{"name":"Draw","path":"scripts/Draw/Draw.yy",},},
     {"id":{"name":"InArray","path":"scripts/InArray/InArray.yy",},},
     {"id":{"name":"Lines","path":"scripts/Lines/Lines.yy",},},
     {"id":{"name":"NodeGet","path":"scripts/NodeGet/NodeGet.yy",},},
