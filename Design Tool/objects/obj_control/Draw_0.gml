@@ -1,15 +1,8 @@
 /// @desc Draw permanent sketches
 
-if keyboard_check(vk_escape)
+if drawing
 {
-	#region Draw surface
-
-	surface_set_target(surf);
-
-	draw_clear_alpha(c_white, 0);
-
 	if !position_meeting(mouse_x, mouse_y, obj_node)
-	and keyboard_check(vk_escape)
 	{
 		LinesCreate(lines);
 	}
@@ -17,7 +10,16 @@ if keyboard_check(vk_escape)
 	if mouse_check_button(mb_right)
 	{
 		LinesDelete(lines);
-	}
+	}	
+}
+
+if view_notes
+{
+	#region Draw surface
+
+	surface_set_target(surf);
+
+	draw_clear_alpha(c_white, 0);
 	
 	LinesDraw(lines);
 

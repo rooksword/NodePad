@@ -17,3 +17,6 @@ can_draw = 0;
 colours = [c_black, c_red, c_lime, c_blue, c_white];
 colour_draw = c_grey;
 size_draw = 2;
+
+drawing = false;
+view_notes = true;

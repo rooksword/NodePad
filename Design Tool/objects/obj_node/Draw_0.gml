@@ -17,7 +17,7 @@ if obj_control.node_viewing == id
 	draw_clear_alpha(c_white, 0);
 
 	if !position_meeting(mouse_x, mouse_y, obj_node)
-	and !keyboard_check(vk_escape)
+	and !obj_control.drawing
 	{
 		LinesCreate(lines);
 	}
