@@ -1,5 +1,10 @@
 /// @desc Draw permanent sketches
 
+with obj_node
+{
+	DrawNode();	
+}
+
 if view_notes
 {
 	if colour_draw == 5
@@ -19,6 +24,8 @@ if view_notes
 {
 	#region Draw surface
 
+	if !surface_exists(surf) surf = surface_create(room_width, room_height);
+	
 	surface_set_target(surf);
 
 	draw_clear_alpha(c_white, 0);

@@ -10,6 +10,9 @@ and mouse_check_button(mb_middle)
 	y -= mouse_y - mouse_yprevious;	
 }
 
+x = round(x);
+y = round(y);
+
 camera_set_view_pos(view_camera[0], x - _vw / 2, y - _vh / 2);
 
 mouse_xprevious = mouse_x;

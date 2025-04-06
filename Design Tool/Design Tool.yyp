@@ -45,6 +45,8 @@
     {"id":{"name":"spr_arrow","path":"sprites/spr_arrow/spr_arrow.yy",},},
     {"id":{"name":"spr_button","path":"sprites/spr_button/spr_button.yy",},},
     {"id":{"name":"spr_node","path":"sprites/spr_node/spr_node.yy",},},
+    {"id":{"name":"spr_shadow","path":"sprites/spr_shadow/spr_shadow.yy",},},
+    {"id":{"name":"spr_stroke","path":"sprites/spr_stroke/spr_stroke.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",

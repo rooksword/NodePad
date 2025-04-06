@@ -20,10 +20,10 @@ if obj_control.node_viewing == id
 	
 	if array_length(connected) > 0
 	{
-		with NodeGet(connected[0]) Draw();	
+		with NodeGet(connected[0]) DrawSurface();	
 	}
 	
-	Draw();
+	DrawSurface();
 }
 
 #endregion
@@ -134,15 +134,3 @@ var _hover = position_meeting(mouse_x, mouse_y, id) or obj_control.node_connecti
 image_alpha = obj_control.node_viewing == id ? 1 : 0.5;
 
 image_blend = merge_colour(colour, c_black, _hover ? 0.33 : 0);
-
-draw_self();
-
-#region Draw UID text
-
-draw_set_colour(c_white);
-draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
-
-//draw_text(x, y, uid);
-
-#endregion

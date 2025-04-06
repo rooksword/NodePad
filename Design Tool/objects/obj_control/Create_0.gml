@@ -1,5 +1,7 @@
 /// @desc Variables
 
+//display_reset(8, false);
+
 randomize();
 
 node_connecting = noone;
